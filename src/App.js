@@ -15,14 +15,56 @@ class App extends Component {
     let displayVal = "" + this.state.displayValue;
     displayVal += val;
     this.setState({ displayValue: displayVal });
-    console.log(displayVal);
+  };
+
+  handleSignKey = sign => {
+    this.setState({
+      prevVal: this.state.displayValue,
+      displayValue: 0,
+      signVal: sign
+    });
+  };
+  handleCKey = () => {
+    this.setState({ displayValue: 0 });
+  };
+
+  handleEqualsKey = () => {
+    let result = 0;
+    switch (this.state.signVal) {
+      case "+":
+        result =
+          parseFloat(this.state.prevVal) + parseFloat(this.state.displayValue);
+        break;
+      case "-":
+        result =
+          parseFloat(this.state.prevVal) - parseFloat(this.state.displayValue);
+        break;
+      case "*":
+        result =
+          parseFloat(this.state.prevVal) * parseFloat(this.state.displayValue);
+        break;
+      case "/":
+        result =
+          parseFloat(this.state.prevVal) / parseFloat(this.state.displayValue);
+        break;
+      default:
+        break;
+    }
+
+    this.setState({ displayValue: result });
   };
 
   render() {
     return (
       <React.Fragment>
         <Results val={this.state.displayValue} />
-        <Keypad calKey={this.state.calKey} onKey={this.handleKey} />
+        <Keypad
+          calKey={this.state.calKey}
+          onKey={this.handleKey}
+          onSignKey={this.handleSignKey}
+          onEqualsKey={this.handleEqualsKey}
+          onC={this.handleCKey}
+        />
       </React.Fragment>
     );
   }

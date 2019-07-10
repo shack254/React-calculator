@@ -4,11 +4,27 @@ class Keypad extends Component {
     return (
       <div className="container">
         <div className="row">
-          <button className="btn btn-outline-danger m-3 btn-size">C</button>
-          <button className="btn btn-outline-info m-3 btn-size">/</button>
-          <button className="btn btn-outline-info m-3 btn-size">X</button>
+          <button
+            onClick={() => this.props.onC()}
+            className="btn btn-outline-danger m-3 btn-size"
+          >
+            C
+          </button>
+          <button
+            onClick={() => this.props.onSignKey("/")}
+            className="btn btn-outline-info m-3 btn-size"
+          >
+            /
+          </button>
+          <button
+            onClick={() => this.props.onSignKey("*")}
+            className="btn btn-outline-info m-3 btn-size"
+          >
+            X
+          </button>
           <button className="btn btn-outline-danger m-3 btn-size">DEL</button>
         </div>
+
         <div className="row">
           <button
             onClick={() => this.props.onKey(this.props.calKey[7])}
@@ -28,8 +44,14 @@ class Keypad extends Component {
           >
             9
           </button>
-          <button className="btn btn-outline-info m-3 btn-size">-</button>
+          <button
+            onClick={() => this.props.onSignKey("-")}
+            className="btn btn-outline-info m-3 btn-size"
+          >
+            -
+          </button>
         </div>
+
         <div className="row">
           <button
             onClick={() => this.props.onKey(this.props.calKey[4])}
@@ -49,8 +71,14 @@ class Keypad extends Component {
           >
             6
           </button>
-          <button className="btn btn-outline-info m-3 btn-size">+</button>
+          <button
+            onClick={() => this.props.onSignKey("+")}
+            className="btn btn-outline-info m-3 btn-size"
+          >
+            +
+          </button>
         </div>
+
         <div className="row">
           <button
             onClick={() => this.props.onKey(this.props.calKey[1])}
@@ -70,10 +98,26 @@ class Keypad extends Component {
           >
             3
           </button>
-          <button className="btn btn-outline-primary m-3 btn-size">=</button>
+          <button
+            onClick={() => this.props.onEqualsKey()}
+            className="btn btn-outline-primary m-3 btn-size"
+          >
+            =
+          </button>
         </div>
         <div className="row">
-          <button className="btn btn-outline-dark m-3 btn-size">0</button>
+          <button
+            onClick={() => this.props.onKey(this.props.calKey[0])}
+            className="btn btn-outline-dark m-3 btn-size"
+          >
+            0
+          </button>
+          <button
+            onClick={() => this.props.onKey(["."])}
+            className="btn btn-outline-dark m-3 btn-size"
+          >
+            .
+          </button>
         </div>
       </div>
     );
